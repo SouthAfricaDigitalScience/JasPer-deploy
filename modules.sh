@@ -3,7 +3,7 @@ source /usr/share/modules/init/bash
 module add ci
 
 cd ${WORKSPACE}/${NAME}-${VERSION}
-echo "Making the ${NAME} modulefile
+echo "Making the ${NAME} modulefile"  
 mkdir -p modules
 (
 cat <<MODULE_FILE
@@ -16,11 +16,11 @@ proc ModulesHelp { } {
 }
 
 module-whatis   "$NAME $VERSION."
-setenv       HDF5_VERSION       $VERSION
+setenv       JASPER_VERSION       $VERSION
 setenv       JASPER_DIR           /apprepo/$::env(SITE)/$::env(OS)/$::env(ARCH)/${NAME}/${VERSION}
 prepend-path LD_LIBRARY_PATH   $::env(JASPER_DIR)/lib
-prepend-path HDF5_INCLUDE_DIR   $::env(JASPER_DIR)/include
-prepend-path CPATH             $::env(JASPER_DIR)/include
+prepend-path GCC_INCLUDE_DIR   $::env(JASPER_DIR)/include
+prepend-path PATH             $::env(JASPER_DIR)/include
 MODULE_FILE
 ) > modules/${VERSION}
 
