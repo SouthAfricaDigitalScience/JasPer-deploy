@@ -3,10 +3,10 @@
 # Project URL : http://www.ece.uvic.ca/~frodo/jasper/
 source /usr/share/modules/init/bash
 SOURCE_FILE=$NAME-$VERSION.zip
-module add gcc/${GCC_VERSION}
-
 # We provide the base module which all jobs need to get their environment on the build slaves
 module load ci
+module add gcc/${GCC_VERSION}
+
 
 
 # Next, a bit of verbose description of the build environment. This is useful when debugging initial builds and you
