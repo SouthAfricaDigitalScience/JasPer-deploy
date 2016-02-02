@@ -1,13 +1,11 @@
 #!/bin/bash -e
-. /etc/profile.d/modules.#!/bin/sh
-module load ci
-echo ""
+. /etc/profile.d/modules.sh
 
-cd ${WORKSPACE}/${NAME}-${VERSION}
-echo " this is just a check to trigger the first build."
-echo $?
-make check
-make install
+module add deploy
+cd $WORKSPACE/$NAME-$VERSION
+make distclean
+./configure --prefix $SOFT_DIR
+make -j2 install
 
 mkdir -p modules
 (
@@ -21,7 +19,7 @@ puts stderr " that the [module-info name] module is not available"
 }
 module-whatis "$NAME $VERSION."
 setenv JASPER_VERSION $VERSION
-setenv JASPER_DIR /apprepo/$::env(SITE)/$::env(OS)/$::env(ARCH)/$NAME/$VERSION
+setenv JASPER_DIR $::env(CVMFS_DIR)/$::env(SITE)/$::env(OS)/$::env(ARCH)/$NAME/$VERSION
 prepend-path LD_LIBRARY_PATH $::env(JASPER_DIR)/lib
 prepend-path CPATH $::env(JASPER_DIR)/include/
 MODULE_FILE

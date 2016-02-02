@@ -1,13 +1,10 @@
 #!/bin/bash -e
 # JasPer has no dependencies
 # Project URL : http://www.ece.uvic.ca/~frodo/jasper/
-source /usr/share/modules/init/bash
+. /etc/profile.d/modules.sh
 SOURCE_FILE=$NAME-$VERSION.zip
 # We provide the base module which all jobs need to get their environment on the build slaves
 module load ci
-module add gcc/${GCC_VERSION}
-
-
 
 # Next, a bit of verbose description of the build environment. This is useful when debugging initial builds and you
 # may want to remove it later.
@@ -57,4 +54,4 @@ cd $WORKSPACE/$NAME-$VERSION
 
 # The build nodes have 8 core jobs. jobs are blocking, which means you can build with at least 8 core parallelism.
 # this might cause instability in the builds, so it's up to you.
-make -j 8
+make -j 2
