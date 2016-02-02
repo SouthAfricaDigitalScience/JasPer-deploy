@@ -1,5 +1,5 @@
 #!/bin/bash -e
-. /etc/profile.d/modules.#!/bin/sh
+. /etc/profile.d/modules.sh
 module load ci
 echo ""
 
