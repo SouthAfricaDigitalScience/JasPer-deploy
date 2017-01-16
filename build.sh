@@ -31,11 +31,18 @@ mkdir -p ${SOFT_DIR}
 
 #  Download the source file if it's not available locally.
 #  we were originally using ncurses as the test application
-if [[ ! -e ${SRC_DIR}/${SOURCE_FILE} ]] ; then
+if [ ! -e ${SRC_DIR}/${SOURCE_FILE}.lock ] && [ ! -s ${SRC_DIR}/${SOURCE_FILE} ] ; then
+  touch  ${SRC_DIR}/${SOURCE_FILE}.lock
   echo "seems like this is the first build - let's get the source"
   mkdir -p $SRC_DIR
 # use local mirrors if you can. Remember - UFS has to pay for the bandwidth!
   wget http://www.ece.uvic.ca/~frodo/jasper/software/${SOURCE_FILE} -O ${SRC_DIR}/${SOURCE_FILE}
+elif [ -e ${SRC_DIR}/${SOURCE_FILE}.lock ] ; then
+  # Someone else has the file, wait till it's released
+  while [ -e ${SRC_DIR}/${SOURCE_FILE}.lock ] ; do
+    echo " There seems to be a download currently under way, will check again in 5 sec"
+    sleep 5
+  done
 else
   echo "continuing from previous builds, using source at " ${SRC_DIR}/${SOURCE_FILE}
 fi
