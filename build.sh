@@ -47,6 +47,7 @@ else
   echo "continuing from previous builds, using source at " ${SRC_DIR}/${SOURCE_FILE}
 fi
 
+file ${SRC_DIR}/${SOURCE_FILE}
 # now unpack it into the workspace
 tar xfz ${SRC_DIR}/${SOURCE_FILE} -d ${WORKSPACE}
 
