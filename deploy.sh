@@ -4,7 +4,7 @@
 module add deploy
 cd $WORKSPACE/$NAME-$VERSION
 make distclean
-./configure --prefix $SOFT_DIR
+./configure --prefix=$SOFT_DIR
 make -j2 install
 
 mkdir -p modules

@@ -1,6 +1,6 @@
 #!/bin/bash -e
 . /etc/profile.d/modules.sh
-module load ci
+module add ci
 echo ""
 
 cd ${WORKSPACE}/${NAME}-${VERSION}
@@ -21,10 +21,13 @@ puts stderr " that the [module-info name] module is not available"
 }
 module-whatis "$NAME $VERSION."
 setenv JASPER_VERSION $VERSION
-setenv JASPER_DIR /apprepo/$::env(SITE)/$::env(OS)/$::env(ARCH)/$NAME/$VERSION
+setenv JASPER_DIR /data/ci-build/$::env(SITE)/$::env(OS)/$::env(ARCH)/$NAME/$VERSION
 prepend-path LD_LIBRARY_PATH $::env(JASPER_DIR)/lib
 prepend-path CPATH $::env(JASPER_DIR)/include/
 MODULE_FILE
 ) > modules/${VERSION}
 mkdir -p ${LIBRARIES_MODULES}/${NAME}
 cp modules/${VERSION} ${LIBRARIES_MODULES}/${NAME}
+
+module avail $NAME
+module add $NAME/$VERSION
