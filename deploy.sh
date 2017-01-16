@@ -2,7 +2,7 @@
 . /etc/profile.d/modules.sh
 
 module add deploy
-cd $WORKSPACE/$NAME-$VERSION
+cd ${WORKSPACE}/${NAME}-version-${VERSION}
 make distclean
 ./configure --prefix=$SOFT_DIR
 make -j2 install

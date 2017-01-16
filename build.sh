@@ -56,7 +56,7 @@ tar xfz ${SRC_DIR}/${SOURCE_FILE} -C ${WORKSPACE}
 #  the next lines
 
 # We will be running configure and make in this directory
-cd $WORKSPACE/$NAME-$VERSION
+cd ${WORKSPACE}/${NAME}-version-${VERSION}
 # Note that $SOFT_DIR is used as the target installation directory.
 ./configure --prefix=$SOFT_DIR
 

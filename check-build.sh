@@ -3,7 +3,7 @@
 module add ci
 echo ""
 
-cd ${WORKSPACE}/${NAME}-${VERSION}
+cd ${WORKSPACE}/${NAME}-version-${VERSION}
 echo " this is just a check to trigger the first build."
 echo $?
 make check
