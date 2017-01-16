@@ -2,7 +2,7 @@
 # JasPer has no dependencies
 # Project URL : http://www.ece.uvic.ca/~frodo/jasper/
 . /etc/profile.d/modules.sh
-SOURCE_FILE=$NAME-$VERSION.zip
+SOURCE_FILE=$NAME-$VERSION.tar.gz
 # We provide the base module which all jobs need to get their environment on the build slaves
 module add ci
 
@@ -36,7 +36,7 @@ if [ ! -e ${SRC_DIR}/${SOURCE_FILE}.lock ] && [ ! -s ${SRC_DIR}/${SOURCE_FILE} ]
   echo "seems like this is the first build - let's get the source"
   mkdir -p $SRC_DIR
 # use local mirrors if you can. Remember - UFS has to pay for the bandwidth!
-  wget http://www.ece.uvic.ca/~frodo/jasper/software/${SOURCE_FILE} -O ${SRC_DIR}/${SOURCE_FILE}
+  wget https://github.com/mdadams/jasper/archive/version-${VERSION}.tar.gz -O ${SRC_DIR}/${SOURCE_FILE}
 elif [ -e ${SRC_DIR}/${SOURCE_FILE}.lock ] ; then
   # Someone else has the file, wait till it's released
   while [ -e ${SRC_DIR}/${SOURCE_FILE}.lock ] ; do
@@ -48,7 +48,7 @@ else
 fi
 
 # now unpack it into the workspace
-unzip -u ${SRC_DIR}/${SOURCE_FILE} -d ${WORKSPACE}
+tar xvfz ${SRC_DIR}/${SOURCE_FILE} -d ${WORKSPACE}
 
 #  generally tarballs will unpack into the NAME-VERSION directory structure. If this is not the case for your application
 #  ie, if it unpacks into a different default directory, either use the relevant tar commands, or change
