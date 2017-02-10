@@ -10,3 +10,13 @@ We build versions
 
   1. 2.0.10
   1. 1.900.1
+
+# Dependencies
+
+No dependencies
+
+# Configuration
+
+No special configuration
+
+# Citing
