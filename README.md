@@ -2,12 +2,13 @@
 
 # jasper-deploy
 
-A repo to contain the build, test and deploy scripts for [JasPer Image Coding Toolkit](http://www.ece.uvic.ca/~frodo/jasper/), for CODE-RADE.
+A repo to contain the build, test and deploy scripts for [JasPer Image Coding Toolkit](http://www.ece.uvic.ca/~frodo/jasper/), for CODE-RADE. This is needed for the [WRF-deploy](https://ci.sagrid.ac.za/job/wrf-deploy) job.
 
 # Versions
 
 We build versions
 
+  1. 2.0.12
   1. 2.0.10
   1. 1.900.1
 
