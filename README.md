@@ -1,4 +1,4 @@
-[![Build Status](https://ci.sagrid.ac.za/buildStatus/icon?job=jasper-deploy)](https://ci.sagrid.ac.za/job/jasper-deploy)
+[![Build Status](https://ci.sagrid.ac.za/buildStatus/icon?job=jasper-deploy)](https://ci.sagrid.ac.za/job/jasper-deploy) [![Build Status](https://ci.sagrid.ac.za/buildStatus/icon?job=jasper2-deploy)](https://ci.sagrid.ac.za/job/jasper2-deploy)
 
 # jasper-deploy
 
@@ -14,7 +14,7 @@ We build versions
 
 # Dependencies
 
-No dependencies
+Jasper 2 requires cmake.
 
 # Configuration
 
