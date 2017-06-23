@@ -19,6 +19,7 @@
 SOURCE_FILE=$NAME-$VERSION.tar.gz
 # We provide the base module which all jobs need to get their environment on the build slaves
 module add ci
+module add cmake
 
 # Next, a bit of verbose description of the build environment. This is useful when debugging initial builds and you
 # may want to remove it later.
@@ -71,10 +72,15 @@ tar xfz ${SRC_DIR}/${SOURCE_FILE} -C ${WORKSPACE}
 
 # We will be running configure and make in this directory
 cd ${WORKSPACE}/${NAME}-version-${VERSION}
-ls
-# Note that $SOFT_DIR is used as the target installation directory.
-./configure --prefix=$SOFT_DIR
+mkdir -p ${WORKSPACE}/build-${BUILD_NUMBER}
+cd ${WORKSPACE}/build-${BUILD_NUMBER}
+cmake -G "Unix Makefiles" \
+-H${WORKSPACE}/${NAME}-version-${VERSION} \
+-B${PWD} \
+-DCMAKE_INSTALL_PREFIX=${SOFT_DIR} \
+-DJAS_ENABLE_LIBJPEG=true \
+-DJAS_ENABLE_SHARED=true \
+-DJAS_ENABLE_OPENGL=false
 
-# The build nodes have 8 core jobs. jobs are blocking, which means you can build with at least 8 core parallelism.
-# this might cause instability in the builds, so it's up to you.
+
 make

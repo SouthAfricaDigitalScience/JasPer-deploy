@@ -20,7 +20,7 @@ echo ""
 cd ${WORKSPACE}/${NAME}-version-${VERSION}
 echo " this is just a check to trigger the first build."
 echo $?
-make check
+make check ARGS="-V"
 make install
 
 mkdir -p modules
