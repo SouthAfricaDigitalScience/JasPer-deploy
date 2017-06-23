@@ -20,6 +20,7 @@ SOURCE_FILE=$NAME-$VERSION.tar.gz
 # We provide the base module which all jobs need to get their environment on the build slaves
 module add ci
 module add cmake
+module add jpeg
 
 # Next, a bit of verbose description of the build environment. This is useful when debugging initial builds and you
 # may want to remove it later.
