@@ -81,7 +81,9 @@ cmake -G "Unix Makefiles" \
 -DCMAKE_INSTALL_PREFIX=${SOFT_DIR} \
 -DJAS_ENABLE_LIBJPEG=true \
 -DJAS_ENABLE_SHARED=true \
--DJAS_ENABLE_OPENGL=false
+-DJAS_ENABLE_OPENGL=false \
+-DJPEG_LIBRARY=$JPEG_DIR/lib/libjpeg.so \
+-DJPEG_INCLUDE_DIR=${JPEG_DIR}/include
 
 
 make

@@ -16,9 +16,18 @@
 . /etc/profile.d/modules.sh
 
 module add deploy
-cd ${WORKSPACE}/${NAME}-version-${VERSION}
-make distclean
-./configure --prefix=$SOFT_DIR
+cd ${WORKSPACE}/${NAME}-version-${VERSION}-build-${BUILD_NUMBER}
+rm -rf *
+cmake -G "Unix Makefiles" \
+-H${WORKSPACE}/${NAME}-version-${VERSION} \
+-B${PWD} \
+-DCMAKE_INSTALL_PREFIX=${SOFT_DIR} \
+-DJAS_ENABLE_LIBJPEG=true \
+-DJAS_ENABLE_SHARED=true \
+-DJAS_ENABLE_OPENGL=false \
+-DJPEG_LIBRARY=${JPEG_DIR}/lib/libjpeg.so \
+-DJPEG_INCLUDE_DIR=${JPEG_DIR}/include
+make
 make install
 
 mkdir -p modules

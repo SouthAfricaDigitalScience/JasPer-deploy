@@ -15,9 +15,10 @@
 
 . /etc/profile.d/modules.sh
 module add ci
+module add  jpeg
 echo ""
 
-cd ${WORKSPACE}/${NAME}-version-${VERSION}
+cd ${WORKSPACE}/${NAME}-version-${VERSION}/build-${BUILD_NUMBER}
 echo $?
 make check ARGS="-V"
 make install
