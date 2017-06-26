@@ -20,14 +20,10 @@ SOURCE_FILE=$NAME-$VERSION.tar.gz
 # We provide the base module which all jobs need to get their environment on the build slaves
 module add ci
 module add cmake
+module add jpeg
 
-# In order to get started, we need to ensure that the following directories are available
-
-# Workspace is the "home" directory of jenkins into which the project itself will be created and built.
 mkdir -p ${WORKSPACE}
-# SRC_DIR is the local directory to which all of the source code tarballs are downloaded. We cache them locally.
 mkdir -p ${SRC_DIR}
-# SOFT_DIR is the directory into which the application will be "installed"
 mkdir -p ${SOFT_DIR}
 
 #  Download the source file if it's not available locally.
@@ -56,10 +52,13 @@ tar xfz ${SRC_DIR}/${SOURCE_FILE} -C ${WORKSPACE}
 cd ${WORKSPACE}/${NAME}-version-${VERSION}
 mkdir -p build-${BUILD_NUMBER}
 cd build-${BUILD_NUMBER}
-cmake ../ -G"Unix Makefiles" \
+cmake -G "Unix Makefiles" \
+-H${WORKSPACE}/${NAME}-version-${VERSION} \
+-B${PWD} \
 -DCMAKE_INSTALL_PREFIX=${SOFT_DIR} \
 -DJAS_ENABLE_LIBJPEG=true \
--DJAS_ENABLE_SHARED=true
-# The build nodes have 8 core jobs. jobs are blocking, which means you can build with at least 8 core parallelism.
-# this might cause instability in the builds, so it's up to you.
+-DJAS_ENABLE_SHARED=true \
+-DJAS_ENABLE_OPENGL=false \
+-DJPEG_LIBRARY=$JPEG_DIR/lib/libjpeg.so \
+-DJPEG_INCLUDE_DIR=${JPEG_DIR}/include
 make
