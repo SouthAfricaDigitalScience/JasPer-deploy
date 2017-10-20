@@ -19,24 +19,7 @@
 SOURCE_FILE=$NAME-$VERSION.tar.gz
 # We provide the base module which all jobs need to get their environment on the build slaves
 module add ci
-module add cmake
 module add jpeg
-
-# Next, a bit of verbose description of the build environment. This is useful when debugging initial builds and you
-# may want to remove it later.
-
-# this tells you the main variables you can use which are set by the ci module
-echo "REPO_DIR is "
-echo $REPO_DIR
-echo "SRC_DIR is "
-echo $SRC_DIR
-echo "WORKSPACE is "
-echo $WORKSPACE
-echo "SOFT_DIR is"
-echo $SOFT_DIR
-
-
-# In order to get started, we need to ensure that the following directories are available
 
 # Workspace is the "home" directory of jenkins into which the project itself will be created and built.
 mkdir -p ${WORKSPACE}
@@ -75,15 +58,5 @@ tar xfz ${SRC_DIR}/${SOURCE_FILE} -C ${WORKSPACE}
 cd ${WORKSPACE}/${NAME}-version-${VERSION}
 mkdir -p ${WORKSPACE}/build-${BUILD_NUMBER}
 cd ${WORKSPACE}/build-${BUILD_NUMBER}
-cmake -G "Unix Makefiles" \
--H${WORKSPACE}/${NAME}-version-${VERSION} \
--B${PWD} \
--DCMAKE_INSTALL_PREFIX=${SOFT_DIR} \
--DJAS_ENABLE_LIBJPEG=true \
--DJAS_ENABLE_SHARED=true \
--DJAS_ENABLE_OPENGL=false \
--DJPEG_LIBRARY=$JPEG_DIR/lib/libjpeg.so \
--DJPEG_INCLUDE_DIR=${JPEG_DIR}/include
-
-
+../configure --prefix=${SOFT_DIR}
 make
