@@ -56,7 +56,7 @@ tar xfz ${SRC_DIR}/${SOURCE_FILE} -C ${WORKSPACE}
 
 # We will be running configure and make in this directory
 cd ${WORKSPACE}/${NAME}-version-${VERSION}
-mkdir -p ${WORKSPACE}/build-${BUILD_NUMBER}
-cd ${WORKSPACE}/build-${BUILD_NUMBER}
+mkdir -p ${WORKSPACE}/${NAME}-version-${VERSION}/build-${BUILD_NUMBER}
+cd ${WORKSPACE}/${NAME}-version-${VERSION}/build-${BUILD_NUMBER}
 ../configure --prefix=${SOFT_DIR}
 make

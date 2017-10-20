@@ -17,7 +17,7 @@
 
 module add deploy
 module add jpeg
-cd ${WORKSPACE}/${NAME}-version-${VERSION}-build-${BUILD_NUMBER}
+cd ${WORKSPACE}/${NAME}-version-${VERSION}/build-${BUILD_NUMBER}
 rm -rf *
 ../configure --prefix=${SOFT_DIR}
 make
