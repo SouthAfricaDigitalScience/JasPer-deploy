@@ -16,6 +16,7 @@
 . /etc/profile.d/modules.sh
 
 module add deploy
+module add cmake
 module add  jpeg
 cd ${WORKSPACE}/${NAME}-version-${VERSION}/build-${BUILD_NUMBER}
 rm -rf *
