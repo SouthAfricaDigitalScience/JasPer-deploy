@@ -17,7 +17,7 @@
 
 module add deploy
 module add cmake
-module add  jpeg
+module add jpeg
 cd ${WORKSPACE}/${NAME}-version-${VERSION}/build-${BUILD_NUMBER}
 rm -rf *
 cmake -G "Unix Makefiles" \

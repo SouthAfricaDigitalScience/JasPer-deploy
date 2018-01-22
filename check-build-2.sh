@@ -15,13 +15,12 @@
 
 . /etc/profile.d/modules.sh
 module add ci
-module add  jpeg
+module add cmake
+module add jpeg
 echo ""
 
 cd ${WORKSPACE}/${NAME}-version-${VERSION}/build-${BUILD_NUMBER}
-echo " this is just a check to trigger the first build."
-echo $?
-make test
+make test ARGS="-V -E '3'"
 make install
 
 mkdir -p modules
